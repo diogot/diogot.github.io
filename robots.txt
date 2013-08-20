@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://d-ogo.github.io/sitemap.xml 
