@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[Doing things the hard way...]]></title>
   <link href="http://d-ogo.github.io/atom.xml" rel="self"/>
   <link href="http://d-ogo.github.io/"/>
-  <updated>2013-08-20T13:56:30-03:00</updated>
+  <updated>2013-08-20T14:03:59-03:00</updated>
   <id>http://d-ogo.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Diogo Tridapalli]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
