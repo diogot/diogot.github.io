@@ -3,7 +3,6 @@ layout: post
 title: "Static libs with support to iOS 5 and arm64"
 date: 2013-09-18 12:36
 comments: true
-published: false
 categories: [iOS, Xcode, arm64]
 ---
 
