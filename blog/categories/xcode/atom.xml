@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Xcode | Doing things the hard way...]]></title>
+  <link href="http://blog.diogot.com/blog/categories/xcode/atom.xml" rel="self"/>
+  <link href="http://blog.diogot.com/"/>
+  <updated>2013-09-18T13:39:16-03:00</updated>
+  <id>http://blog.diogot.com/</id>
+  <author>
+    <name><![CDATA[Diogo Tridapalli]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Static libs with support to iOS 5 and arm64]]></title>
+    <link href="http://blog.diogot.com/blog/2013/09/18/static-libs-with-support-to-ios-5-and-arm64/"/>
+    <updated>2013-09-18T12:36:00-03:00</updated>
+    <id>http://blog.diogot.com/blog/2013/09/18/static-libs-with-support-to-ios-5-and-arm64</id>
+    <content type="html"><![CDATA[<p>With the launch of iPhone 5s Apple brings the 64-bit architecture to mobile, this brings new possibilities for the iOS platform. But there is a restriction imposed by Apple, only projects with deployment target to iOS 6.0 or higher can produce fat binaries including arm64. So the apps developer should choose between support iOS 5 and earlier or arm64, although SDK developers shouldn&rsquo;t be obligated to decide for your users! It&rsquo;s possible to produce one fat binary with all the architectures, so let&rsquo;s see one way to do it.</p>
+
+<!-- more -->
+
+
+<p>There is a <a href="https://devforums.apple.com/message/887883#887883">discussion</a> on Developer Forums where an Apple developer explains that this restriction is due to iOS 5 are not prepared to handle the fat binary headers that contain 64-bit code. Although static libraries aren&rsquo;t handled by iOS but by the linker that came with Xcode and Xcode 5 linker obviously can handle 64-bit code!</p>
+
+<p>The idea is pretty simple, build the different architectures separated then bind them using <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/lipo.1.html">lipo</a>.
+I know that is possible to do this using directly the Xcode, but I prefer to do it via command line (or Rakefile).</p>
+
+<p>First build the binary with <code>arm</code> using <code>xcodebuild</code>:</p>
+
+<p><code>bash Build arm
+xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphoneos7.0' clean build ARCHS='armv7 armv7s' IPHONEOS_DEPLOYMENT_TARGET='5.0' TARGET_BUILD_DIR='./build-arm' BUILT_PRODUCTS_DIR='./build-arm'
+</code></p>
+
+<p>Note that you must set <code>IPHONEOS_DEPLOYMENT_TARGET='5.0'</code> and ARCHS=&lsquo;armv7 armv7s&rsquo;, it&rsquo;s recommended to set build and product dirs to make the things more clear, take a look at <a href="https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html">Build Setting Reference</a> for more details what this flags means.</p>
+
+<p>Next build for <code>arm64</code>:</p>
+
+<p><code>bash Build arm64
+xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphoneos7.0' clean build ARCHS='arm64' IPHONEOS_DEPLOYMENT_TARGET='6.0' TARGET_BUILD_DIR='./build-arm64' BUILT_PRODUCTS_DIR='./build-arm64'
+</code></p>
+
+<p>Note the difference on <code>ARCHS</code> and <code>IPHONEOS_DEPLOYMENT_TARGET</code>. We also need to build for simulator, in this case we have to change the sdk to <code>iphonesimulator7.0</code> and build in two steps first for <code>i386</code>:</p>
+
+<p><code>bash Build i386
+xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphonesimulator7.0' clean build ARCHS='i386' IPHONEOS_DEPLOYMENT_TARGET='5.0' TARGET_BUILD_DIR='./build-i386' BUILT_PRODUCTS_DIR='./build-i386'
+</code></p>
+
+<p>Now the tricky part! If you just change the <code>ARCHS</code> to <code>x86_86</code> depending on your Xcode setting you will got an error like: &ldquo;x86_64 is not a valid arch&rdquo;. To avoid this just add <code>VALID_ARCHS='x86_64'</code>:</p>
+
+<p><code>bash Build x86_64
+xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphonesimulator7.0' clean build ARCHS='x86_64' VALID_ARCHS='x86_64' IPHONEOS_DEPLOYMENT_TARGET='6.0' TARGET_BUILD_DIR='./build-x86_64' BUILT_PRODUCTS_DIR='./build-x86_64'
+</code></p>
+
+<p>Finally we just have to create a fat binary with all the 5 architectures:</p>
+
+<p><code>bash Lipo
+lipo -create './build-arm/libStaticLibDemo.a' './build-arm64/libStaticLibDemo.a' './build-i386/libStaticLibDemo.a' './build-x86_64/libStaticLibDemo.a' -output 'libStaticLibDemo.a'
+</code></p>
+
+<p>I created a working example of this, you can get it <a href="https://github.com/diogot/StaticLibDemo">here</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

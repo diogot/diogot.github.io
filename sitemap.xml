@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>
+            http://blog.diogot.com/blog/2013/09/18/static-libs-with-support-to-ios-5-and-arm64/
+        </loc>
+        <lastmod>2013-09-18T13:34:44-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.diogot.com/blog/archives/</loc>
+        <lastmod>2013-09-18T13:34:44-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.diogot.com/</loc>
+        <lastmod>2013-09-18T13:34:44-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.diogot.com/robots.txt</loc>
+        <lastmod>2013-09-18T13:34:10-03:00</lastmod>
+    </url>
+</urlset>
