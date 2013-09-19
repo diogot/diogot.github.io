@@ -26,7 +26,7 @@ Note that you must set `IPHONEOS_DEPLOYMENT_TARGET='5.0'` and ARCHS='armv7 armv7
 Next build for `arm64`:
 
 ``` bash Build arm64
-xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphoneos7.0' clean build ARCHS='arm64' IPHONEOS_DEPLOYMENT_TARGET='6.0' TARGET_BUILD_DIR='./build-arm64' BUILT_PRODUCTS_DIR='./build-arm64'
+xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphoneos7.0' clean build ARCHS='arm64' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR='./build-arm64' BUILT_PRODUCTS_DIR='./build-arm64'
 ```
 
 Note the difference on `ARCHS` and `IPHONEOS_DEPLOYMENT_TARGET`. We also need to build for simulator, in this case we have to change the sdk to `iphonesimulator7.0` and build in two steps first for `i386`:
@@ -38,7 +38,7 @@ xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iph
 Now the tricky part! If you just change the `ARCHS` to `x86_86` depending on your Xcode setting you will got an error like: "x86_64 is not a valid arch". To avoid this just add `VALID_ARCHS='x86_64'`:
 
 ``` bash Build x86_64
-xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphonesimulator7.0' clean build ARCHS='x86_64' VALID_ARCHS='x86_64' IPHONEOS_DEPLOYMENT_TARGET='6.0' TARGET_BUILD_DIR='./build-x86_64' BUILT_PRODUCTS_DIR='./build-x86_64'
+xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphonesimulator7.0' clean build ARCHS='x86_64' VALID_ARCHS='x86_64' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR='./build-x86_64' BUILT_PRODUCTS_DIR='./build-x86_64'
 ```
 
 Finally we just have to create a fat binary with all the 5 architectures:
