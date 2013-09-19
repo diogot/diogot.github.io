@@ -4,7 +4,7 @@
   <title><![CDATA[Category: arm64 | Doing things the hard way...]]></title>
   <link href="http://blog.diogot.com/blog/categories/arm64/atom.xml" rel="self"/>
   <link href="http://blog.diogot.com/"/>
-  <updated>2013-09-18T13:44:22-03:00</updated>
+  <updated>2013-09-18T23:24:11-03:00</updated>
   <id>http://blog.diogot.com/</id>
   <author>
     <name><![CDATA[Diogo Tridapalli]]></name>
@@ -39,7 +39,7 @@ xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iph
 <p>Next build for <code>arm64</code>:</p>
 
 <p><code>bash Build arm64
-xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphoneos7.0' clean build ARCHS='arm64' IPHONEOS_DEPLOYMENT_TARGET='6.0' TARGET_BUILD_DIR='./build-arm64' BUILT_PRODUCTS_DIR='./build-arm64'
+xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphoneos7.0' clean build ARCHS='arm64' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR='./build-arm64' BUILT_PRODUCTS_DIR='./build-arm64'
 </code></p>
 
 <p>Note the difference on <code>ARCHS</code> and <code>IPHONEOS_DEPLOYMENT_TARGET</code>. We also need to build for simulator, in this case we have to change the sdk to <code>iphonesimulator7.0</code> and build in two steps first for <code>i386</code>:</p>
@@ -51,7 +51,7 @@ xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iph
 <p>Now the tricky part! If you just change the <code>ARCHS</code> to <code>x86_86</code> depending on your Xcode setting you will got an error like: &ldquo;x86_64 is not a valid arch&rdquo;. To avoid this just add <code>VALID_ARCHS='x86_64'</code>:</p>
 
 <p><code>bash Build x86_64
-xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphonesimulator7.0' clean build ARCHS='x86_64' VALID_ARCHS='x86_64' IPHONEOS_DEPLOYMENT_TARGET='6.0' TARGET_BUILD_DIR='./build-x86_64' BUILT_PRODUCTS_DIR='./build-x86_64'
+xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphonesimulator7.0' clean build ARCHS='x86_64' VALID_ARCHS='x86_64' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR='./build-x86_64' BUILT_PRODUCTS_DIR='./build-x86_64'
 </code></p>
 
 <p>Finally we just have to create a fat binary with all the 5 architectures:</p>

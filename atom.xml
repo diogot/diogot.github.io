@@ -4,7 +4,7 @@
   <title><![CDATA[Doing things the hard way...]]></title>
   <link href="http://blog.diogot.com/atom.xml" rel="self"/>
   <link href="http://blog.diogot.com/"/>
-  <updated>2013-09-18T13:44:22-03:00</updated>
+  <updated>2013-09-18T23:24:11-03:00</updated>
   <id>http://blog.diogot.com/</id>
   <author>
     <name><![CDATA[Diogo Tridapalli]]></name>
@@ -40,7 +40,7 @@ I know that is possible to do this using directly the Xcode, but I prefer to do 
 <p>Next build for <code>arm64</code>:</p>
 
 <figure class='code'><figcaption><span>Build arm64</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>xcodebuild -project <span class="s1">&#39;StaticLibDemo.xcodeproj&#39;</span> -configuration <span class="s1">&#39;Release&#39;</span> -sdk <span class="s1">&#39;iphoneos7.0&#39;</span> clean build <span class="nv">ARCHS</span><span class="o">=</span><span class="s1">&#39;arm64&#39;</span> <span class="nv">IPHONEOS_DEPLOYMENT_TARGET</span><span class="o">=</span><span class="s1">&#39;6.0&#39;</span> <span class="nv">TARGET_BUILD_DIR</span><span class="o">=</span><span class="s1">&#39;./build-arm64&#39;</span> <span class="nv">BUILT_PRODUCTS_DIR</span><span class="o">=</span><span class="s1">&#39;./build-arm64&#39;</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>xcodebuild -project <span class="s1">&#39;StaticLibDemo.xcodeproj&#39;</span> -configuration <span class="s1">&#39;Release&#39;</span> -sdk <span class="s1">&#39;iphoneos7.0&#39;</span> clean build <span class="nv">ARCHS</span><span class="o">=</span><span class="s1">&#39;arm64&#39;</span> <span class="nv">IPHONEOS_DEPLOYMENT_TARGET</span><span class="o">=</span><span class="s1">&#39;7.0&#39;</span> <span class="nv">TARGET_BUILD_DIR</span><span class="o">=</span><span class="s1">&#39;./build-arm64&#39;</span> <span class="nv">BUILT_PRODUCTS_DIR</span><span class="o">=</span><span class="s1">&#39;./build-arm64&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -54,7 +54,7 @@ I know that is possible to do this using directly the Xcode, but I prefer to do 
 <p>Now the tricky part! If you just change the <code>ARCHS</code> to <code>x86_86</code> depending on your Xcode setting you will got an error like: &ldquo;x86_64 is not a valid arch&rdquo;. To avoid this just add <code>VALID_ARCHS='x86_64'</code>:</p>
 
 <figure class='code'><figcaption><span>Build x86_64</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>xcodebuild -project <span class="s1">&#39;StaticLibDemo.xcodeproj&#39;</span> -configuration <span class="s1">&#39;Release&#39;</span> -sdk <span class="s1">&#39;iphonesimulator7.0&#39;</span> clean build <span class="nv">ARCHS</span><span class="o">=</span><span class="s1">&#39;x86_64&#39;</span> <span class="nv">VALID_ARCHS</span><span class="o">=</span><span class="s1">&#39;x86_64&#39;</span> <span class="nv">IPHONEOS_DEPLOYMENT_TARGET</span><span class="o">=</span><span class="s1">&#39;6.0&#39;</span> <span class="nv">TARGET_BUILD_DIR</span><span class="o">=</span><span class="s1">&#39;./build-x86_64&#39;</span> <span class="nv">BUILT_PRODUCTS_DIR</span><span class="o">=</span><span class="s1">&#39;./build-x86_64&#39;</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>xcodebuild -project <span class="s1">&#39;StaticLibDemo.xcodeproj&#39;</span> -configuration <span class="s1">&#39;Release&#39;</span> -sdk <span class="s1">&#39;iphonesimulator7.0&#39;</span> clean build <span class="nv">ARCHS</span><span class="o">=</span><span class="s1">&#39;x86_64&#39;</span> <span class="nv">VALID_ARCHS</span><span class="o">=</span><span class="s1">&#39;x86_64&#39;</span> <span class="nv">IPHONEOS_DEPLOYMENT_TARGET</span><span class="o">=</span><span class="s1">&#39;7.0&#39;</span> <span class="nv">TARGET_BUILD_DIR</span><span class="o">=</span><span class="s1">&#39;./build-x86_64&#39;</span> <span class="nv">BUILT_PRODUCTS_DIR</span><span class="o">=</span><span class="s1">&#39;./build-x86_64&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
