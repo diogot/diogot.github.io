@@ -21,7 +21,7 @@ First build the binary with `arm` using `xcodebuild`:
 xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphoneos7.0' clean build ARCHS='armv7 armv7s' IPHONEOS_DEPLOYMENT_TARGET='5.0' TARGET_BUILD_DIR='./build-arm' BUILT_PRODUCTS_DIR='./build-arm'
 ```
 
-Note that you must set `IPHONEOS_DEPLOYMENT_TARGET='5.0'` and ARCHS='armv7 armv7s', it's recommended to set build and product dirs to make the things more clear, take a look at [Build Setting Reference](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html) for more details what this flags means.
+Note that you must set `IPHONEOS_DEPLOYMENT_TARGET='5.0'` and `ARCHS='armv7 armv7s'`, it's recommended to set build and product dirs to make the things more clear, take a look at [Build Setting Reference](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html) for more details what this flags means.
 
 Next build for `arm64`:
 
