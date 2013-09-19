@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Xcode | Doing things the hard way...]]></title>
   <link href="http://blog.diogot.com/blog/categories/xcode/atom.xml" rel="self"/>
   <link href="http://blog.diogot.com/"/>
-  <updated>2013-09-18T23:24:11-03:00</updated>
+  <updated>2013-09-18T23:26:03-03:00</updated>
   <id>http://blog.diogot.com/</id>
   <author>
     <name><![CDATA[Diogo Tridapalli]]></name>
@@ -34,7 +34,7 @@ I know that is possible to do this using directly the Xcode, but I prefer to do 
 xcodebuild -project 'StaticLibDemo.xcodeproj' -configuration 'Release' -sdk 'iphoneos7.0' clean build ARCHS='armv7 armv7s' IPHONEOS_DEPLOYMENT_TARGET='5.0' TARGET_BUILD_DIR='./build-arm' BUILT_PRODUCTS_DIR='./build-arm'
 </code></p>
 
-<p>Note that you must set <code>IPHONEOS_DEPLOYMENT_TARGET='5.0'</code> and ARCHS=&lsquo;armv7 armv7s&rsquo;, it&rsquo;s recommended to set build and product dirs to make the things more clear, take a look at <a href="https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html">Build Setting Reference</a> for more details what this flags means.</p>
+<p>Note that you must set <code>IPHONEOS_DEPLOYMENT_TARGET='5.0'</code> and <code>ARCHS='armv7 armv7s'</code>, it&rsquo;s recommended to set build and product dirs to make the things more clear, take a look at <a href="https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html">Build Setting Reference</a> for more details what this flags means.</p>
 
 <p>Next build for <code>arm64</code>:</p>
 
