@@ -4,7 +4,7 @@
   <title><![CDATA[Doing things the hard way...]]></title>
   <link href="http://blog.diogot.com/atom.xml" rel="self"/>
   <link href="http://blog.diogot.com/"/>
-  <updated>2013-09-18T23:26:03-03:00</updated>
+  <updated>2013-10-02T00:19:58-03:00</updated>
   <id>http://blog.diogot.com/</id>
   <author>
     <name><![CDATA[Diogo Tridapalli]]></name>
@@ -12,6 +12,74 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Counting the number of midnights between two dates]]></title>
+    <link href="http://blog.diogot.com/blog/2013/10/02/counting-the-number-of-midnights-between-two-dates/"/>
+    <updated>2013-10-02T00:09:00-03:00</updated>
+    <id>http://blog.diogot.com/blog/2013/10/02/counting-the-number-of-midnights-between-two-dates</id>
+    <content type="html"><![CDATA[<p>Math with dates is always tricky, calculate the number of midnights between two days is not an exception.
+Here I have extended the example from the <a href="https://developer.apple.com/library/ios/documentation/cocoa/Conceptual/DatesAndTimes/Articles/dtCalendricalCalculations.html#//apple_ref/doc/uid/TP40007836-SW8">Apple documentation</a> to avoid <code>nil</code> dates.</p>
+
+<!-- more -->
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nf">midnightsBetweenFromDate:</span><span class="p">(</span><span class="n">NSDate</span> <span class="o">*</span><span class="p">)</span><span class="nv">startDate</span>
+</span><span class='line'>                               <span class="nf">toDate:</span><span class="p">(</span><span class="n">NSDate</span> <span class="o">*</span><span class="p">)</span><span class="nv">endDate</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">startDate</span> <span class="o">==</span> <span class="nb">nil</span> <span class="o">||</span> <span class="n">endDate</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">NSNotFound</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">NSCalendar</span> <span class="o">*</span><span class="n">calendar</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSCalendar</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithCalendarIdentifier:</span><span class="n">NSGregorianCalendar</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">NSInteger</span> <span class="n">startDay</span> <span class="o">=</span> <span class="p">[</span><span class="n">calendar</span> <span class="nl">ordinalityOfUnit:</span><span class="n">NSDayCalendarUnit</span>
+</span><span class='line'>                                             <span class="nl">inUnit:</span><span class="n">NSEraCalendarUnit</span>
+</span><span class='line'>                                            <span class="nl">forDate:</span><span class="n">startDate</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">NSInteger</span> <span class="n">endDay</span> <span class="o">=</span> <span class="p">[</span><span class="n">calendar</span> <span class="nl">ordinalityOfUnit:</span><span class="n">NSDayCalendarUnit</span>
+</span><span class='line'>                                           <span class="nl">inUnit:</span><span class="n">NSEraCalendarUnit</span>
+</span><span class='line'>                                          <span class="nl">forDate:</span><span class="n">endDate</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">calendar</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">startDay</span> <span class="o">==</span> <span class="n">NSNotFound</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">startDay</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">endDay</span> <span class="o">==</span> <span class="n">NSNotFound</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">endDay</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">endDay</span> <span class="o">-</span> <span class="n">startDay</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Static libs with support to iOS 5 and arm64]]></title>

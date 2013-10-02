@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | Doing things the hard way...]]></title>
   <link href="http://blog.diogot.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://blog.diogot.com/"/>
-  <updated>2013-09-18T23:26:03-03:00</updated>
+  <updated>2013-10-02T00:19:58-03:00</updated>
   <id>http://blog.diogot.com/</id>
   <author>
     <name><![CDATA[Diogo Tridapalli]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Counting the number of midnights between two dates]]></title>
+    <link href="http://blog.diogot.com/blog/2013/10/02/counting-the-number-of-midnights-between-two-dates/"/>
+    <updated>2013-10-02T00:09:00-03:00</updated>
+    <id>http://blog.diogot.com/blog/2013/10/02/counting-the-number-of-midnights-between-two-dates</id>
+    <content type="html"><![CDATA[<p>Math with dates is always tricky, calculate the number of midnights between two days is not an exception.
+Here I have extended the example from the <a href="https://developer.apple.com/library/ios/documentation/cocoa/Conceptual/DatesAndTimes/Articles/dtCalendricalCalculations.html#//apple_ref/doc/uid/TP40007836-SW8">Apple documentation</a> to avoid <code>nil</code> dates.</p>
+
+<!-- more -->
+
+
+<p>```objc
+&ndash; (NSInteger)midnightsBetweenFromDate:(NSDate *)startDate</p>
+
+<pre><code>                           toDate:(NSDate *)endDate
+</code></pre>
+
+<p>{</p>
+
+<pre><code>if (startDate == nil || endDate == nil)
+    return NSNotFound;
+
+NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+
+NSInteger startDay = [calendar ordinalityOfUnit:NSDayCalendarUnit
+                                         inUnit:NSEraCalendarUnit
+                                        forDate:startDate];
+
+NSInteger endDay = [calendar ordinalityOfUnit:NSDayCalendarUnit
+                                       inUnit:NSEraCalendarUnit
+                                      forDate:endDate];
+[calendar release];
+
+if (startDay == NSNotFound)
+    return startDay;
+
+if (endDay == NSNotFound)
+    return endDay;
+
+return endDay - startDay;
+</code></pre>
+
+<p>}
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Static libs with support to iOS 5 and arm64]]></title>
