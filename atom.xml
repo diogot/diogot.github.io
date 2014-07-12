@@ -4,7 +4,7 @@
   <title><![CDATA[Doing things the hard way...]]></title>
   <link href="http://blog.diogot.com/atom.xml" rel="self"/>
   <link href="http://blog.diogot.com/"/>
-  <updated>2013-10-02T00:19:58-03:00</updated>
+  <updated>2014-07-12T18:25:47-03:00</updated>
   <id>http://blog.diogot.com/</id>
   <author>
     <name><![CDATA[Diogo Tridapalli]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Counting the number of midnights between two dates]]></title>
+    <title type="html"><![CDATA[Counting the Number of Midnights Between Two Dates]]></title>
     <link href="http://blog.diogot.com/blog/2013/10/02/counting-the-number-of-midnights-between-two-dates/"/>
     <updated>2013-10-02T00:09:00-03:00</updated>
     <id>http://blog.diogot.com/blog/2013/10/02/counting-the-number-of-midnights-between-two-dates</id>
@@ -82,7 +82,7 @@ Here I have extended the example from the <a href="https://developer.apple.com/l
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Static libs with support to iOS 5 and arm64]]></title>
+    <title type="html"><![CDATA[Static Libs With Support to iOS 5 and Arm64]]></title>
     <link href="http://blog.diogot.com/blog/2013/09/18/static-libs-with-support-to-ios-5-and-arm64/"/>
     <updated>2013-09-18T12:36:00-03:00</updated>
     <id>http://blog.diogot.com/blog/2013/09/18/static-libs-with-support-to-ios-5-and-arm64</id>

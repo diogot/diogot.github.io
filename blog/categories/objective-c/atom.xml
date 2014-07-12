@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Objective-C | Doing things the hard way...]]></title>
+  <title><![CDATA[Category: objective-c | Doing things the hard way...]]></title>
   <link href="http://blog.diogot.com/blog/categories/objective-c/atom.xml" rel="self"/>
   <link href="http://blog.diogot.com/"/>
-  <updated>2013-10-02T00:19:58-03:00</updated>
+  <updated>2014-07-12T18:25:47-03:00</updated>
   <id>http://blog.diogot.com/</id>
   <author>
     <name><![CDATA[Diogo Tridapalli]]></name>
