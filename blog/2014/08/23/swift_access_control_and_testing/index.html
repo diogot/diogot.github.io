@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Objective-c - Doing things the hard way...</title>
+  <title>Swift, Access Control and Testing - Doing things the hard way...</title>
   <meta name="author" content="Diogo Tridapalli">
 
   
-  <meta name="description" content="Category: objective-c">
+  <meta name="description" content="Access control in Swift looks nice, but can give some trouble to find out how to make tests work smoothly. (The code in this post works with Xcode 6 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.diogot.com/blog/categories/objective-c">
+  <link rel="canonical" href="http://blog.diogot.com/blog/2014/08/23/swift_access_control_and_testing">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Doing things the hard way..." type="application/atom+xml">
@@ -77,35 +77,132 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Objective-c</h1>
+    
+      <h1 class="entry-title">Swift, Access Control and Testing</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-23T22:04:31-03:00" pubdate data-updated="true">Aug 23<sup>rd</sup>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>Access control in Swift looks nice, but can give some trouble to find out how to make tests work smoothly. (The code in this post works with Xcode 6 beta 6.)</p>
 
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/10/02/counting-the-number-of-midnights-between-two-dates/">Counting the Number of Midnights Between Two Dates</a></h1>
-<time datetime="2013-10-02T00:09:00-03:00" pubdate><span class='month'>Oct</span> <span class='day'>02</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/objective-c/'>objective-c</a></span>
-</footer>
+<!-- more -->
 
 
-</article>
+<p>There are three <a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-XID_251">Access Control</a> levels:</p>
+
+<ul>
+<li><em>Public access</em> enables entities to be used within any source file from their defining module, and also in a source file from another module that imports the defining module. You typically use public access when specifying the public interface to a framework.</li>
+<li><em>Internal access</em> enables entities to be used within any source file from their defining module, but not in any source file outside of that module. You typically use internal access when defining an app’s or a framework’s internal structure.</li>
+<li><em>Private access</em> restricts the use of an entity to its own defining source file. Use private access to hide the implementation details of a specific piece of functionality.”</li>
+</ul>
+
+
+<p>The default level is <em>Internal access</em>, this is fine, all your classes are visible only to your module, no imports, no external access. Although soon on later you will test your code, right?</p>
+
+<p>First of all, XCTestCase are bundled on a different target and you don&rsquo;t include your classes to the test bundle, right? That&rsquo;s easy, just import the target that contains your class, if your target is called <code>MyProject</code> your test class will be like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import UIKit
+</span><span class='line'>import XCText
+</span><span class='line'>import MyProject
+</span><span class='line'>
+</span><span class='line'>class MyProjectTests: XCTestCase {
+</span><span class='line'>    func testMyProject() {
+</span><span class='line'>        XCTAssert(true, "Pass")
+</span><span class='line'>    }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But this is not enough, do you remember that the default access level is <code>Inernal</code>? If you don&rsquo;t change it in the class that will be tested the compiler will say something like: <code>Use of unresolved identifier 'MyClass'</code>. To void this just set your class and all the methods and properties that will be tested to <code>public</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public class MyClass: NSObject {
+</span><span class='line'>    public var prop: String
+</span><span class='line'>    public init() {}
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Diogo Tridapalli</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-23T22:04:31-03:00" pubdate data-updated="true">Aug 23<sup>rd</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/swift/'>swift</a>, <a class='category' href='/blog/categories/tests/'>tests</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.diogot.com/blog/2014/08/23/swift_access_control_and_testing/" data-via="diogot" data-counturl="http://blog.diogot.com/blog/2014/08/23/swift_access_control_and_testing/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/10/02/counting-the-number-of-midnights-between-two-dates/" title="Previous Post: Counting the number of midnights between two dates">&laquo; Counting the number of midnights between two dates</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[Doing things the hard way...]]></title>
   <link href="http://blog.diogot.com/atom.xml" rel="self"/>
   <link href="http://blog.diogot.com/"/>
-  <updated>2014-07-12T18:25:47-03:00</updated>
+  <updated>2014-08-23T22:19:05-03:00</updated>
   <id>http://blog.diogot.com/</id>
   <author>
     <name><![CDATA[Diogo Tridapalli]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Swift, Access Control and Testing]]></title>
+    <link href="http://blog.diogot.com/blog/2014/08/23/swift_access_control_and_testing/"/>
+    <updated>2014-08-23T22:04:31-03:00</updated>
+    <id>http://blog.diogot.com/blog/2014/08/23/swift_access_control_and_testing</id>
+    <content type="html"><![CDATA[<p>Access control in Swift looks nice, but can give some trouble to find out how to make tests work smoothly. (The code in this post works with Xcode 6 beta 6.)</p>
+
+<!-- more -->
+
+
+<p>There are three <a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-XID_251">Access Control</a> levels:</p>
+
+<ul>
+<li><em>Public access</em> enables entities to be used within any source file from their defining module, and also in a source file from another module that imports the defining module. You typically use public access when specifying the public interface to a framework.</li>
+<li><em>Internal access</em> enables entities to be used within any source file from their defining module, but not in any source file outside of that module. You typically use internal access when defining an app’s or a framework’s internal structure.</li>
+<li><em>Private access</em> restricts the use of an entity to its own defining source file. Use private access to hide the implementation details of a specific piece of functionality.”</li>
+</ul>
+
+
+<p>The default level is <em>Internal access</em>, this is fine, all your classes are visible only to your module, no imports, no external access. Although soon on later you will test your code, right?</p>
+
+<p>First of all, XCTestCase are bundled on a different target and you don&rsquo;t include your classes to the test bundle, right? That&rsquo;s easy, just import the target that contains your class, if your target is called <code>MyProject</code> your test class will be like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import UIKit
+</span><span class='line'>import XCText
+</span><span class='line'>import MyProject
+</span><span class='line'>
+</span><span class='line'>class MyProjectTests: XCTestCase {
+</span><span class='line'>    func testMyProject() {
+</span><span class='line'>        XCTAssert(true, "Pass")
+</span><span class='line'>    }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But this is not enough, do you remember that the default access level is <code>Inernal</code>? If you don&rsquo;t change it in the class that will be tested the compiler will say something like: <code>Use of unresolved identifier 'MyClass'</code>. To void this just set your class and all the methods and properties that will be tested to <code>public</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public class MyClass: NSObject {
+</span><span class='line'>    public var prop: String
+</span><span class='line'>    public init() {}
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Counting the Number of Midnights Between Two Dates]]></title>
