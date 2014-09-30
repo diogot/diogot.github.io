@@ -3,37 +3,52 @@
   
   
   <url>
+    <loc>http://blog.diogot.com/blog/2014/09/29/swift-embedded-runtime-library-increases-app-size/</loc>
+    
+    <lastmod>2014-09-29T23:44:55-03:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.diogot.com/blog/2014/08/23/swift_access_control_and_testing/</loc>
+    
     <lastmod>2014-08-23T22:04:31-03:00</lastmod>
+    
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>http://blog.diogot.com/blog/2013/10/02/counting-the-number-of-midnights-between-two-dates/</loc>
+    
     <lastmod>2013-10-02T00:09:00-03:00</lastmod>
+    
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>http://blog.diogot.com/blog/2013/09/18/static-libs-with-support-to-ios-5-and-arm64/</loc>
+    
     <lastmod>2013-09-18T12:36:00-03:00</lastmod>
+    
     <priority>0.8</priority>
   </url>
   
   
   <url>
     <loc>http://blog.diogot.com/blog/archives/</loc>
-    <lastmod>2014-08-23T22:19:05-03:00</lastmod>
+    <lastmod>2014-09-30T00:02:48-03:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://blog.diogot.com/</loc>
-    <lastmod>2014-08-23T22:19:05-03:00</lastmod>
+    <lastmod>2014-09-30T00:02:48-03:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  
   
   
 </urlset>

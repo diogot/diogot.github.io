@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Doing things the hard way&#8230;</title>
+  <title>Swift Embedded Runtime Library Increases App Size - Doing things the hard way&#8230;</title>
   <meta name="author" content="Diogo Tridapalli">
 
   
-  <meta name="description" content="Blog Archive 2014 Swift Embedded Runtime Library Increases App Size
-Sep 29 2014 posted in ios, swift Swift, Access Control and Testing
-Aug 23 2014 &hellip;">
+  <meta name="description" content="Since beginning Swift attracted a lot of attention, one of many questions was: How Apple will guarantee backwards compatibility in future Swift &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ Aug 23 2014 &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.diogot.com/blog/archives">
+  <link rel="canonical" href="http://blog.diogot.com/blog/2014/09/29/swift-embedded-runtime-library-increases-app-size">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Doing things the hard way..." type="application/atom+xml">
@@ -79,80 +77,92 @@ Aug 23 2014 &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Swift Embedded Runtime Library Increases App Size</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-29T23:44:55-03:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:44 pm</span></time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>Since beginning Swift attracted a lot of attention, one of many questions was: How Apple will guarantee backwards compatibility in future Swift releases?</p>
 
-  
-  <h2>2014</h2>
+<p>The response is cited a few times at Swift Blog, like the <a href="https://developer.apple.com/swift/blog/?id=14">post of 1.0 release</a>:</p>
 
-<article>
-  
-<h1><a href="/blog/2014/09/29/swift-embedded-runtime-library-increases-app-size/">Swift Embedded Runtime Library Increases App Size</a></h1>
-<time datetime="2014-09-29T23:44:55-03:00" pubdate><span class='month'>Sep</span> <span class='day'>29</span> <span class='year'>2014</span></time>
+<blockquote><p>Because your apps today embed a version of the Swift GM runtime, they will continue to run well into the future.</p></blockquote>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/swift/'>swift</a></span>
-</footer>
+<p>But one thing, so far, I don&rsquo;t see people talking about is how this embedded library affect the size of an app?</p>
+
+<!-- more -->
 
 
-</article>
+<p>The easiest way to discover is to create an empty project and compare the size.
+I created two <em>Single View Application</em> projects using on Xcode 6.0.1. On the first image is the bundle directory of Objective-C app and on the second the Swift one.</p>
 
+<p><img class="center" src="/images/swift-lib-overhead.jpg" width="518" height="338" title="'App bundle files and sizes'" ></p>
 
+<p>The Objective-C only app bundle takes only 192 KB and the Swift app bundle 8.6 MB. The Swift binary is smaller but the runtime frameworks can be a huge overhead for many apps!</p>
 
-<article>
-  
-<h1><a href="/blog/2014/08/23/swift_access_control_and_testing/">Swift, Access Control and Testing</a></h1>
-<time datetime="2014-08-23T22:04:31-03:00" pubdate><span class='month'>Aug</span> <span class='day'>23</span> <span class='year'>2014</span></time>
+<p>On the second post of Swift Blog talk about <a href="https://developer.apple.com/swift/blog/?id=2">Compatibility</a>:</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/swift/'>swift</a>, <a class='category' href='/blog/categories/tests/'>tests</a></span>
-</footer>
+<blockquote><p>As Swift changes, those frameworks will be incompatible with the rest of your app. When the binary interface stabilizes in a year or two, the Swift runtime will become part of the host OS and thi s limitation will no longer exist.</p></blockquote>
 
-
-</article>
-
-
-
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/10/02/counting-the-number-of-midnights-between-two-dates/">Counting the Number of Midnights Between Two Dates</a></h1>
-<time datetime="2013-10-02T00:09:00-03:00" pubdate><span class='month'>Oct</span> <span class='day'>02</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/objective-c/'>objective-c</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/09/18/static-libs-with-support-to-ios-5-and-arm64/">Static Libs With Support to iOS 5 and Arm64</a></h1>
-<time datetime="2013-09-18T12:36:00-03:00" pubdate><span class='month'>Sep</span> <span class='day'>18</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/arm64/'>arm64</a>, <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/xcode/'>xcode</a></span>
-</footer>
-
-
-</article>
-
+<p>So for at least one year if you want to use Swift in your apps, you will have to accept this <em>little</em> overhead.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Diogo Tridapalli</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-09-29T23:44:55-03:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:44 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/swift/'>swift</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.diogot.com/blog/2014/09/29/swift-embedded-runtime-library-increases-app-size/" data-via="diogot" data-counturl="http://blog.diogot.com/blog/2014/09/29/swift-embedded-runtime-library-increases-app-size/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/23/swift_access_control_and_testing/" title="Previous Post: Swift, access control and testing">&laquo; Swift, access control and testing</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

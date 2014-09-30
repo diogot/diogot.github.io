@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tests | Doing things the hard way...]]></title>
   <link href="http://blog.diogot.com/blog/categories/tests/atom.xml" rel="self"/>
   <link href="http://blog.diogot.com/"/>
-  <updated>2014-08-23T22:19:05-03:00</updated>
+  <updated>2014-09-30T00:02:48-03:00</updated>
   <id>http://blog.diogot.com/</id>
   <author>
     <name><![CDATA[Diogo Tridapalli]]></name>
@@ -36,32 +36,24 @@
 
 <p>First of all, XCTestCase are bundled on a different target and you don&rsquo;t include your classes to the test bundle, right? That&rsquo;s easy, just import the target that contains your class, if your target is called <code>MyProject</code> your test class will be like this:</p>
 
-<p>```
-import UIKit
+<pre><code>import UIKit
 import XCText
-import MyProject</p>
+import MyProject
 
-<p>class MyProjectTests: XCTestCase {</p>
-
-<pre><code>func testMyProject() {
-    XCTAssert(true, "Pass")
+class MyProjectTests: XCTestCase {
+    func testMyProject() {
+        XCTAssert(true, "Pass")
+    }
 }
 </code></pre>
 
-<p>}
-```</p>
-
 <p>But this is not enough, do you remember that the default access level is <code>Inernal</code>? If you don&rsquo;t change it in the class that will be tested the compiler will say something like: <code>Use of unresolved identifier 'MyClass'</code>. To void this just set your class and all the methods and properties that will be tested to <code>public</code>:</p>
 
-<p>```
-public class MyClass: NSObject {</p>
-
-<pre><code>public var prop: String
-public init() {}
+<pre><code>public class MyClass: NSObject {
+    public var prop: String
+    public init() {}
+}
 </code></pre>
-
-<p>}
-```</p>
 ]]></content>
   </entry>
   
