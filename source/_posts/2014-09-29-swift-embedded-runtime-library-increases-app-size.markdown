@@ -25,6 +25,11 @@ The Objective-C only app bundle takes only 192 KB and the Swift app bundle 8.6 M
 
 On the second post of Swift Blog talk about [Compatibility](https://developer.apple.com/swift/blog/?id=2):
 
-> As Swift changes, those frameworks will be incompatible with the rest of your app. When the binary interface stabilizes in a year or two, the Swift runtime will become part of the host OS and thi s limitation will no longer exist.
+> As Swift changes, those frameworks will be incompatible with the rest of your app. When the binary interface stabilizes in a year or two, the Swift runtime will become part of the host OS and this limitation will no longer exist.
 
 So for at least one year if you want to use Swift in your apps, you will have to accept this *little* overhead.
+
+***
+
+*Update 2014/09/30*: Worth to mention that the runtime libraries are embedded on every app that supports Swift, no matter the minimum deployment target.
+
