@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Doing things the hard way...]]></title>
   <link href="http://blog.diogot.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://blog.diogot.com/"/>
-  <updated>2014-09-30T00:02:48-03:00</updated>
+  <updated>2014-09-30T21:45:33-03:00</updated>
   <id>http://blog.diogot.com/</id>
   <author>
     <name><![CDATA[Diogo Tridapalli]]></name>
@@ -38,9 +38,13 @@ I created two <em>Single View Application</em> projects using on Xcode 6.0.1. On
 
 <p>On the second post of Swift Blog talk about <a href="https://developer.apple.com/swift/blog/?id=2">Compatibility</a>:</p>
 
-<blockquote><p>As Swift changes, those frameworks will be incompatible with the rest of your app. When the binary interface stabilizes in a year or two, the Swift runtime will become part of the host OS and thi s limitation will no longer exist.</p></blockquote>
+<blockquote><p>As Swift changes, those frameworks will be incompatible with the rest of your app. When the binary interface stabilizes in a year or two, the Swift runtime will become part of the host OS and this limitation will no longer exist.</p></blockquote>
 
 <p>So for at least one year if you want to use Swift in your apps, you will have to accept this <em>little</em> overhead.</p>
+
+<hr />
+
+<p><em>Update 2014/09/30</em>: Worth to mention that the runtime libraries are embedded on every app that supports Swift, no matter the minimum deployment target.</p>
 ]]></content>
   </entry>
   
